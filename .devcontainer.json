@@ -1,0 +1,46 @@
+{
+    "name": "CavaThor",
+    "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu",
+    "extensions": [
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.makefile-tools",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "sonarsource.sonarlint-vscode",
+        "jeff-hykin.better-cpp-syntax",
+        "surajbarkale.ninja",
+        "cschleiden.vscode-github-actions"
+    ],
+    "containerEnv": {
+        "VCPKG_ROOT": "${containerEnv:HOME}/vcpkg"
+    },
+    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip && pip install cmake && git clone https://github.com/Microsoft/vcpkg.git ~/vcpkg && ~/vcpkg/bootstrap-vcpkg.sh",
+    "settings": {
+        "files.exclude": {
+            "**/.git": true,
+            "**/.idea": true,
+            "**/.DS_Store": true,
+            "**/Thumbs.db": true
+        },
+        "[cpp]": {
+            "editor.defaultFormatter": "ms-vscode.cpptools"
+        },
+        "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/devcontainer/compile_commands.json",
+        "cmake.useCMakePresets": "auto",
+        "cmake.configureOnOpen": true,
+        "cSpell.words": [
+            "buildsystems",
+            "Codespace",
+            "devcontainer",
+            "instdir",
+            "lukka",
+            "vcpkg",
+            "VCPKG"
+        ]
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        }
+    }
+}

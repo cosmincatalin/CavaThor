@@ -1,0 +1,51 @@
+name: Build
+
+on:
+    push:
+    pull_request:
+
+env:
+    VCPKG_VERSION: "6ca56aeb457f033d344a7106cb3f9f1abf8f4e98"
+
+jobs:
+    build:
+        name: ${{ matrix.config.name }}
+        runs-on: ${{ matrix.config.os }}
+        strategy:
+            fail-fast: true
+            matrix:
+                config:
+                    -   {name: "Ubuntu GCC", os: ubuntu-latest, artifact: "Linux.tar.gz", preset: "github-actions-linux"}
+                    -   {name: "Windows MinGW", os: windows-latest, artifact: "Windows-MinGW.7z", preset: "github-actions-windows-mingw"}
+#                    -   {name: "Windows MSVC", os: windows-latest, artifact: "Windows-MSVC.7z", preset: "github-actions-windows-msvc"}
+                    -   {name: "macOS Clang", os: macos-latest,  artifact: "macOS.7z", preset: "github-actions-macos"}
+        steps:
+            -   uses: actions/checkout@v3
+
+            -   uses: lukka/get-cmake@v3.24.3
+                name: Install CMake and Ninja
+
+            -   name: Restore artifacts, or setup vcpkg (do not install any package)
+                uses: lukka/run-vcpkg@v10.6
+                with:
+                    vcpkgGitCommitId: ${{ env.VCPKG_VERSION }}
+
+            -   name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
+                uses: lukka/run-cmake@v10.0
+                with:
+                    configurePreset: "${{ matrix.config.preset }}"
+                    buildPreset: "${{ matrix.config.preset }}"
+
+            -   name: Install && Strip
+                run: |
+                    cmake --install out/build/${{ matrix.config.preset }} --prefix instdir --strip
+
+            -   name: Pack
+                working-directory: instdir
+                run: cmake -E tar cfv ../${{ matrix.config.artifact }} --format=7zip .
+
+            -   name: Upload
+                uses: actions/upload-artifact@v3.1.1
+                with:
+                    path: ./${{ matrix.config.artifact }}
+                    name: ${{ matrix.config.artifact }}

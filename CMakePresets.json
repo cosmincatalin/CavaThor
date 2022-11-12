@@ -1,0 +1,134 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": {
+                    "type": "FILEPATH",
+                    "value": "${sourceDir}/out/install/${presetName}"
+                },
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+                },
+                "CMAKE_EXPORT_COMPILE_COMMANDS": {
+                    "type": "BOOL",
+                    "value": true
+                }
+            }
+        },
+        {
+            "name": "devcontainer",
+            "displayName": "VS Code Dev Container",
+            "description": "Host OS independent preset for running in VS Code Dev Container",
+            "inherits": ["base"],
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "/usr/bin/g++"
+                },
+                "CMAKE_BUILD_TYPE":{
+                    "type": "STRING",
+                    "value": "Debug"
+                }
+            }
+        },
+        {
+            "name": "github-actions-linux",
+            "description": "Preset for running GitHub Actions on Linux",
+            "inherits": ["base"],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE":{
+                    "type": "STRING",
+                    "value": "Release"
+                }
+            }
+        },
+        {
+            "name": "github-actions-windows-mingw",
+            "description": "Preset for running GitHub Actions on Windows with MinGW",
+            "inherits": ["base"],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE":{
+                    "type": "STRING",
+                    "value": "Release"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "g++"
+                }
+            }
+        },
+        {
+            "name": "github-actions-windows-msvc",
+            "description": "Preset for running GitHub Actions on Windows with MSVC",
+            "inherits": ["base"],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE":{
+                    "type": "STRING",
+                    "value": "Release"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "cl.exe"
+                }
+            }
+        },
+        {
+            "name": "github-actions-macos",
+            "description": "Preset for running GitHub Actions on macOS",
+            "inherits": ["base"],
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "g++"
+                },
+                "CMAKE_BUILD_TYPE":{
+                    "type": "STRING",
+                    "value": "Release"
+                }
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "github-actions-linux",
+            "configurePreset": "github-actions-linux"
+        },
+        {
+            "name": "github-actions-windows-msvc",
+            "configurePreset": "github-actions-windows-msvc"
+        },
+        {
+            "name": "github-actions-windows-mingw",
+            "configurePreset": "github-actions-windows-mingw"
+        },
+        {
+            "name": "github-actions-macos",
+            "configurePreset": "github-actions-macos"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "github-actions-linux",
+            "configurePreset": "github-actions-linux"
+        },
+        {
+            "name": "github-actions-windows-msvc",
+            "configurePreset": "github-actions-windows-msvc"
+        },
+        {
+            "name": "github-actions-windows-mingw",
+            "configurePreset": "github-actions-windows-mingw"
+        },
+        {
+            "name": "github-actions-macos",
+            "configurePreset": "github-actions-macos"
+        }
+    ]
+}
