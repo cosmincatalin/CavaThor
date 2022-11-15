@@ -16,10 +16,12 @@ include_directories(src)
 
 find_path(DBG_MACRO_INCLUDE_DIRS "dbg.h")
 find_package(redis++ CONFIG REQUIRED)
+find_package(Threads REQUIRED)
 
-add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp)
+add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp src/Sources/RedisSource.cpp src/Sources/RedisSource.hpp)
 target_include_directories(CavaThor PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(CavaThor PRIVATE redis++::redis++_static)
+target_link_libraries(CavaThor PUBLIC Threads::Threads)
 install(TARGETS CavaThor)
 
 add_executable(Synchronize runners/Synchronize.cpp)

@@ -35,7 +35,8 @@
             "instdir",
             "lukka",
             "vcpkg",
-            "VCPKG"
+            "VCPKG",
+            "Cava"
         ]
     },
     "features": {

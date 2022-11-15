@@ -1,0 +1,10 @@
+#ifndef CAVATHOR_REDISSOURCE_HPP
+#define CAVATHOR_REDISSOURCE_HPP
+
+
+class RedisSource {
+
+};
+
+
+#endif //CAVATHOR_REDISSOURCE_HPP
