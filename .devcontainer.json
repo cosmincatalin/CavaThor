@@ -1,6 +1,6 @@
 {
     "name": "CavaThor",
-    "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/cpp:0.205.0-ubuntu",
     "extensions": [
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.makefile-tools",
@@ -11,10 +11,7 @@
         "surajbarkale.ninja",
         "cschleiden.vscode-github-actions"
     ],
-    "containerEnv": {
-        "VCPKG_ROOT": "${containerEnv:HOME}/vcpkg"
-    },
-    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip && pip install cmake && git clone https://github.com/Microsoft/vcpkg.git ~/vcpkg && ~/vcpkg/bootstrap-vcpkg.sh",
+    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip && pip install cmake",
     "settings": {
         "files.exclude": {
             "**/.git": true,

@@ -5,14 +5,8 @@
 
 namespace CavaThor {
 
-    void foo(int a, int b)
-    {
-        std::cout << a << b;
-    }
-
     Replicator::Replicator(std::string_view url)
     {
-        std::thread t1(CavaThor::foo, 1, 2);
     }
 
     bool Replicator::start() {
