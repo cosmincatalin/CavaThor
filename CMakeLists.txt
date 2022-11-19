@@ -15,11 +15,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 include_directories(src)
 
 find_path(DBG_MACRO_INCLUDE_DIRS "dbg.h")
+find_package(hiredis CONFIG REQUIRED)
 find_package(Threads REQUIRED)
 
-add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp src/Sources/RedisSource.cpp src/Sources/RedisSource.hpp)
+add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp)
 target_include_directories(CavaThor PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(CavaThor PUBLIC Threads::Threads)
+target_link_libraries(CavaThor PRIVATE hiredis::hiredis)
 install(TARGETS CavaThor)
 
 add_executable(Synchronize runners/Synchronize.cpp)
