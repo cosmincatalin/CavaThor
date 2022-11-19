@@ -30,7 +30,7 @@
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": {
                     "type": "FILEPATH",
-                    "value": "/usr/bin/g++"
+                    "value": "/usr/bin/g++-10"
                 },
                 "CMAKE_BUILD_TYPE":{
                     "type": "STRING",

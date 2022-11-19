@@ -11,7 +11,7 @@
         "surajbarkale.ninja",
         "cschleiden.vscode-github-actions"
     ],
-    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip && pip install cmake",
+    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip g++-10 && pip install cmake",
     "settings": {
         "files.exclude": {
             "**/.git": true,
