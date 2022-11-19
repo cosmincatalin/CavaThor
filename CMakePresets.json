@@ -43,6 +43,10 @@
             "description": "Preset for running GitHub Actions on Linux",
             "inherits": ["base"],
             "cacheVariables": {
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "/usr/bin/g++-10"
+                },
                 "CMAKE_BUILD_TYPE":{
                     "type": "STRING",
                     "value": "Release"
