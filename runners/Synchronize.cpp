@@ -1,20 +1,27 @@
-#include "Replicator.hpp"
-
 #define DBG_MACRO_NO_WARNING
 #include <dbg.h>
-#include <thread>
-
-void foo(int a, int b)
-{
-    std::cout << a << b;
-}
+#include "hiredis/hiredis.h"
 
 int main()
 {
-    std::thread t1(foo, 1, 2);
+    auto *context = redisConnect("127.0.0.1", 6379);
+    if (context == nullptr || context->err) {
+        if (context) {
+            std::cout << (context->errstr) << "\n";
+        } else {
+            dbg("Can't allocate redis context\n");
+        }
+    }
+    auto reply = redisCommand(context, "SET hiredis:03 bar");
+    if (context == nullptr || context->err) {
+        if (context) {
+            std::cout << (context->errstr) << "\n";
+        } else {
+            dbg("Can't allocate redis context\n");
+        }
+    }
+    redisFree(context);
+    dbg(reply);
 
-    CavaThor::Replicator replicator {"redis://localhost:6379"};
-    replicator.start();
-    t1.join();
     return 0;
 }

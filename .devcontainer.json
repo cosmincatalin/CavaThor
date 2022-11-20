@@ -1,6 +1,6 @@
 {
     "name": "CavaThor",
-    "image": "mcr.microsoft.com/devcontainers/cpp:0.205.0-ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu",
     "extensions": [
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.makefile-tools",
