@@ -12,7 +12,8 @@
         "jeff-hykin.better-cpp-syntax",
         "surajbarkale.ninja",
         "cschleiden.vscode-github-actions",
-        "dunn.redis"
+        "dunn.redis",
+        "jeppeandersen.vscode-kafka"
     ],
     "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip g++-10 && pip install cmake",
     "customizations": {
@@ -44,7 +45,10 @@
                     "sonarsource",
                     "hykin",
                     "surajbarkale",
-                    "cschleiden"
+                    "cschleiden",
+                    "jeppeandersen",
+                    "cavathor",
+                    "hiredis"
                 ]
             }
         }

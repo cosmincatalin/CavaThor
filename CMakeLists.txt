@@ -16,6 +16,7 @@ include_directories(src)
 
 find_path(DBG_MACRO_INCLUDE_DIRS "dbg.h")
 find_package(hiredis CONFIG REQUIRED)
+find_package(RdKafka CONFIG REQUIRED)
 #find_package(Threads REQUIRED)
 
 #add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp)
@@ -27,4 +28,5 @@ find_package(hiredis CONFIG REQUIRED)
 add_executable(Synchronize runners/Synchronize.cpp)
 target_include_directories(Synchronize PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(Synchronize PRIVATE hiredis::hiredis)
+target_link_libraries(Synchronize PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 #target_link_libraries(Synchronize CavaThor)
