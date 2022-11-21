@@ -1,6 +1,8 @@
 {
     "name": "CavaThor",
-    "image": "mcr.microsoft.com/devcontainers/cpp:ubuntu",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
     "extensions": [
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.makefile-tools",
@@ -9,36 +11,42 @@
         "sonarsource.sonarlint-vscode",
         "jeff-hykin.better-cpp-syntax",
         "surajbarkale.ninja",
-        "cschleiden.vscode-github-actions"
+        "cschleiden.vscode-github-actions",
+        "dunn.redis"
     ],
     "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip g++-10 && pip install cmake",
-    "settings": {
-        "files.exclude": {
-            "**/.git": true,
-            "**/.idea": true,
-            "**/.DS_Store": true,
-            "**/Thumbs.db": true
-        },
-        "[cpp]": {
-            "editor.defaultFormatter": "ms-vscode.cpptools"
-        },
-        "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/devcontainer/compile_commands.json",
-        "cmake.useCMakePresets": "auto",
-        "cmake.configureOnOpen": true,
-        "cSpell.words": [
-            "buildsystems",
-            "Codespace",
-            "devcontainer",
-            "instdir",
-            "lukka",
-            "vcpkg",
-            "VCPKG",
-            "Cava"
-        ]
-    },
-    "features": {
-        "ghcr.io/devcontainers/features/sshd:1": {
-            "version": "latest"
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.exclude": {
+                    "**/.git": true,
+                    "**/.idea": true,
+                    "**/.DS_Store": true,
+                    "**/Thumbs.db": true
+                },
+                "[cpp]": {
+                    "editor.defaultFormatter": "ms-vscode.cpptools"
+                },
+                "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/devcontainer/compile_commands.json",
+                "cmake.useCMakePresets": "auto",
+                "cmake.configureOnOpen": true,
+                "cSpell.words": [
+                    "buildsystems",
+                    "Codespace",
+                    "devcontainer",
+                    "instdir",
+                    "lukka",
+                    "vcpkg",
+                    "VCPKG",
+                    "Cava",
+                    "cpptools",
+                    "sonarlint",
+                    "sonarsource",
+                    "hykin",
+                    "surajbarkale",
+                    "cschleiden"
+                ]
+            }
         }
     }
 }

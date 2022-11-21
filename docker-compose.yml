@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+    app:
+        image: mcr.microsoft.com/devcontainers/cpp:ubuntu
+        volumes:
+            -   .:/workspace
+        command: sleep infinity
+    redis:
+        image: redis
+        restart: unless-stopped
+        hostname: redis
+        ports:
+            - "6379:6379"
