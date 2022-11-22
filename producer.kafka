@@ -1,0 +1,14 @@
+PRODUCER keyed-message
+topic: users
+key: mykeyq
+headers: header1=value1, header2=value2
+Cosmin,Dev
+
+###
+
+PRODUCER non-keyed-json-message
+topic: users-json
+{
+    "name": "Cosmin",
+    "dept": "Dev"
+}
