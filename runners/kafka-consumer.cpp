@@ -1,16 +1,23 @@
 #define DBG_MACRO_NO_WARNING
 #include <dbg.h>
-#include <hiredis/hiredis.h>
+#include <signal.h>
 #include <librdkafka/rdkafka.h>
+
+static volatile sig_atomic_t run = 1;
+
+static void stop(int sig) {
+    dbg("Flag change");
+    run = 0;
+}
 
 int main()
 {
-    // Kafka Consumer
     char errstr[512];
     rd_kafka_resp_err_t err;
     rd_kafka_conf_t* conf = rd_kafka_conf_new();
     rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", errstr, sizeof(errstr));
     rd_kafka_conf_set(conf, "group.id", "dummy-group-id", errstr, sizeof(errstr));
+    rd_kafka_conf_set(conf, "auto.offset.reset", "earliest", nullptr, 0);
     rd_kafka_t* consumer = rd_kafka_new(RD_KAFKA_CONSUMER, conf, errstr, sizeof(errstr));
     conf = nullptr;
     const char *topic = "users";
@@ -18,8 +25,9 @@ int main()
     rd_kafka_topic_partition_list_add(subscription, topic, RD_KAFKA_PARTITION_UA);
     err = rd_kafka_subscribe(consumer, subscription);
     rd_kafka_topic_partition_list_destroy(subscription);
-    while (true) {
-        rd_kafka_message_t *consumer_message;
+    signal(SIGINT, stop);
+    while (run) {
+        rd_kafka_message_t* consumer_message;
 
         consumer_message = rd_kafka_consumer_poll(consumer, 500);
         if (!consumer_message) {
@@ -37,7 +45,8 @@ int main()
                 return 1;
             }
         } else {
-            dbg(consumer_message->payload);
+            dbg((char *)consumer_message->payload);
+            dbg(consumer_message->len);
         }
 
         // Free the message when we're done.
@@ -47,12 +56,6 @@ int main()
     rd_kafka_consumer_close(consumer);
     rd_kafka_destroy(consumer);
 
-    // Redis
-    auto* context = redisConnect("redis", 6379);
-    redisCommand(context, "SET hiredis:04 bar");
-    redisFree(context);
-
-
-    dbg("Done");
+    dbg("Done Kafka");
     return 0;
 }

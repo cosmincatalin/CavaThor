@@ -4,6 +4,7 @@
     "dependencies": [
         "librdkafka",
         "dbg-macro",
-        "hiredis"
+        "hiredis",
+        "protobuf"
     ]
 }

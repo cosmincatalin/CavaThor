@@ -17,6 +17,7 @@ include_directories(src)
 find_path(DBG_MACRO_INCLUDE_DIRS "dbg.h")
 find_package(hiredis CONFIG REQUIRED)
 find_package(RdKafka CONFIG REQUIRED)
+find_package(protobuf CONFIG REQUIRED)
 #find_package(Threads REQUIRED)
 
 #add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp)
@@ -25,8 +26,16 @@ find_package(RdKafka CONFIG REQUIRED)
 #target_link_libraries(CavaThor PRIVATE hiredis::hiredis)
 #install(TARGETS CavaThor)
 
-add_executable(Synchronize runners/Synchronize.cpp)
-target_include_directories(Synchronize PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(Synchronize PRIVATE hiredis::hiredis)
-target_link_libraries(Synchronize PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
+add_executable(RedisProducer runners/redis-producer.cpp)
+target_include_directories(RedisProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(RedisProducer PRIVATE hiredis::hiredis)
+
+add_executable(KafkaConsumer runners/kafka-consumer.cpp)
+target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
+
+add_executable(ProtobufConsumer runners/protobuf-producer.cpp)
+target_include_directories(ProtobufConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(ProtobufConsumer PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
+
 #target_link_libraries(Synchronize CavaThor)
