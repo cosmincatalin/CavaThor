@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package runners;
+
+message User {
+    string name = 1;
+    string dept = 2;
+}

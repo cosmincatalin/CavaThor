@@ -13,9 +13,11 @@
         "surajbarkale.ninja",
         "cschleiden.vscode-github-actions",
         "dunn.redis",
-        "jeppeandersen.vscode-kafka"
+        "jeppeandersen.vscode-kafka",
+        "mutantdino.resourcemonitor",
+        "zxh404.vscode-proto3"
     ],
-    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip g++-10 && pip install cmake",
+    "postCreateCommand": "sudo apt update && sudo apt remove -y cmake && sudo apt install -y python3-pip g++-10 protobuf-compiler && pip install cmake",
     "customizations": {
         "vscode": {
             "settings": {
@@ -50,6 +52,13 @@
                     "jeppeandersen",
                     "cavathor",
                     "hiredis"
+                ]
+            },
+            "protoc": {
+                "compile_on_save": true,
+                "options": [
+                    "--proto_path=${workspaceRoot}/runners",
+                    "--cpp_out=${workspaceRoot}/runners"
                 ]
             }
         }

@@ -34,7 +34,7 @@ add_executable(KafkaConsumer runners/kafka-consumer.cpp)
 target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 
-add_executable(ProtobufConsumer runners/protobuf-producer.cpp)
+add_executable(ProtobufConsumer runners/protobuf-producer.cpp runners/user.pb.h runners/user.pb.cc)
 target_include_directories(ProtobufConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(ProtobufConsumer PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
