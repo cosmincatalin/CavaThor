@@ -23,7 +23,8 @@
                     "**/.git": true,
                     "**/.idea": true,
                     "**/.DS_Store": true,
-                    "**/Thumbs.db": true
+                    "**/Thumbs.db": true,
+                    "**/.vscode": true
                 },
                 "[cpp]": {
                     "editor.defaultFormatter": "ms-vscode.cpptools"
