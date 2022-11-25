@@ -10,6 +10,8 @@ int main()
     *user.mutable_name() = "Catalin";
     std::string str;
     user.SerializeToString(&str);
+    char* data;
+    user.SerializeToArray(data, user.ByteSizeLong());
     dbg(str);
     dbg("Done Proto");
     return 0;
