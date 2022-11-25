@@ -5,14 +5,18 @@
 int main()
 {
     // https://gitter.im/edenhill/librdkafka?at=5508bd2677c8d5b10f4fa596
-    runners::User user;
-    *user.mutable_dept() = "DS";
-    *user.mutable_name() = "Catalin";
+    runners::User userIn;
+    *userIn.mutable_dept() = "DS";
+    *userIn.mutable_name() = "Catalin";
     std::string str;
-    user.SerializeToString(&str);
+    userIn.SerializeToString(&str);
     char buff[1024];
     char* data = buff;
-    user.SerializeToArray(data, user.ByteSize());
+    userIn.SerializeToArray(data, userIn.ByteSize());
+
+    runners::User userOut;
+    userOut.ParseFromArray(data, userIn.ByteSize());
+    dbg(userOut.DebugString());
     dbg(data);
     dbg(str);
     dbg("Done Proto");
