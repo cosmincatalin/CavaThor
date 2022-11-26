@@ -1,18 +1,17 @@
-#ifndef CAVATHOR_REPLICATOR_HPP
-#define CAVATHOR_REPLICATOR_HPP
+#ifndef SRC_REPLICATOR_HPP_
+#define SRC_REPLICATOR_HPP_
 
 #include <string_view>
 
 namespace CavaThor {
 
-    class Replicator {
-    private:
-    public:
-        Replicator(std::string_view url);
-        bool start();
-        bool stop();
-    };
+class Replicator {
+ public:
+    explicit Replicator(std::string_view url);
+    bool start();
+    bool stop();
+};
 
 }
 
-#endif //CAVATHOR_REPLICATOR_HPP
+#endif  // SRC_REPLICATOR_HPP_

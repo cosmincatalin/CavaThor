@@ -11,8 +11,7 @@ static void stop(int sig) {
     run = 0;
 }
 
-int main()
-{
+int main() {
     rd_kafka_conf_t* conf = rd_kafka_conf_new();
     rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", nullptr, 0);
     rd_kafka_conf_set(conf, "group.id", "dummy-group-id", nullptr, 0);

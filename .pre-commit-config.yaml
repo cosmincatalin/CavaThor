@@ -9,7 +9,7 @@ repos:
             # -   id: uncrustify
             # -   id: cppcheck
             -   id: cpplint
-                args: ["--filter=-legal/copyright", "--exclude=runners/*.pb.cc"]
+                args: ["--filter=-legal/copyright,-build/c++11", "--exclude=runners/*.pb.cc", "--linelength=120"]
             # -   id: include-what-you-use
     -   repo: https://github.com/BlankSpruce/gersemi
         rev: 0.8.2

@@ -1,12 +1,11 @@
-#ifndef CAVATHOR_REDISDESTINATION_HPP
-#define CAVATHOR_REDISDESTINATION_HPP
+#ifndef SRC_DESTINATIONS_REDISDESTINATION_HPP_
+#define SRC_DESTINATIONS_REDISDESTINATION_HPP_
 
 namespace CavaThor {
 
-    class RedisDestination {
+class RedisDestination {
+};
 
-    };
+}  // CavaThor
 
-} // CavaThor
-
-#endif //CAVATHOR_REDISDESTINATION_HPP
+#endif  // SRC_DESTINATIONS_REDISDESTINATION_HPP_

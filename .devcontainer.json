@@ -16,7 +16,6 @@
         "jeppeandersen.vscode-kafka",
         "mutantdino.resourcemonitor",
         "zxh404.vscode-proto3",
-        "devescalus.git-commit-no-verify-action-button",
-        "elagil.pre-commit-helper"
+        "devescalus.git-commit-no-verify-action-button"
     ]
 }

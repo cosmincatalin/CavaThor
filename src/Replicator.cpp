@@ -5,8 +5,7 @@
 
 namespace CavaThor {
 
-    Replicator::Replicator(std::string_view url)
-    {
+    Replicator::Replicator(std::string_view url) {
     }
 
     bool Replicator::start() {
@@ -17,4 +16,4 @@ namespace CavaThor {
         return true;
     }
 
-}
+}  // namespace CavaThor
