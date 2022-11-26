@@ -4,8 +4,7 @@
 #include <librdkafka/rdkafka.h>
 #include "user.pb.h"
 
-int main()
-{
+int main() {
     runners::User userIn;
     *userIn.mutable_dept() = "DS";
     *userIn.mutable_name() = "Catalin";

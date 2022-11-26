@@ -2,8 +2,7 @@
 #include <dbg.h>
 #include "user.pb.h"
 
-int main()
-{
+int main() {
     // https://gitter.im/edenhill/librdkafka?at=5508bd2677c8d5b10f4fa596
     runners::User userIn;
     *userIn.mutable_dept() = "DS";

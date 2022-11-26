@@ -2,8 +2,7 @@
 #include <dbg.h>
 #include <hiredis/hiredis.h>
 
-int main()
-{
+int main() {
     auto* context = redisConnect("redis", 6379);
     redisCommand(context, "SET hiredis:04 bar");
     redisFree(context);

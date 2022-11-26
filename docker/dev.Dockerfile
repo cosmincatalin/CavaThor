@@ -10,6 +10,6 @@ RUN sudo apt install -y \
     uncrustify \
     clang-tidy
 RUN pip install \
-    cmake \
-    pre-commit \
-    cpplint
+    cmake==3.25.0 \
+    pre-commit==2.20.0 \
+    cpplint==1.6.1

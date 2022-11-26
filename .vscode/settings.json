@@ -52,6 +52,7 @@
         "resourcemonitor",
         "sonarlint",
         "sonarsource",
+        "subdir",
         "surajbarkale",
         "uncrustify",
         "vcpkg",
