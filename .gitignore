@@ -3,3 +3,5 @@ build/
 instdir
 out
 data
+**/*.pb.h
+**/*.pb.cc

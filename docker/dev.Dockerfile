@@ -14,8 +14,8 @@ RUN pip install \
     cpplint==1.6.1
 env PROTOC_VERSION=21.9
 env PROTOC_ZIP=protoc-${PROTOC_VERSION}-linux-x86_64.zip
-RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/${PROTOC_ZIP} \
-    sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc \
-    sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*' \
+RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/${PROTOC_ZIP} && \
+    sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc && \
+    sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*' && \
     rm -f $PROTOC_ZIP
 RUN git config --global --add safe.directory /workspace

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package runners;
+
+message Car {
+    double id = 1;
+    float top_speed = 2;
+    int32 number_of_doors = 3;
+    int64 included_km = 4;
+    uint32 gearbox_positions = 5;
+    uint64 rentals = 6;
+    bool available = 7;
+    string brand = 8;
+    bytes logo = 9;
+    Color color = 10;
+}
+
+enum Color {
+    COLOR_UNSPECIFIED = 0;
+    COLOR_RED = 1;
+    COLOR_BLUE = 2;
+}
