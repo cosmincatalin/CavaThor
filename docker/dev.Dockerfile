@@ -5,7 +5,10 @@ RUN sudo apt remove -y cmake
 RUN sudo apt install -y \
     python3-pip \
     g++-10 \
-    protobuf-compiler
+    protobuf-compiler \
+    clang-format \
+    uncrustify
 RUN pip install \
     cmake \
-    pre-commit
+    pre-commit \
+    cpplint
