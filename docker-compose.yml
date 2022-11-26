@@ -6,11 +6,6 @@ services:
         volumes:
             -   .:/workspace
         command: sleep infinity
-    app:
-        image: mcr.microsoft.com/devcontainers/cpp:ubuntu
-        volumes:
-            -   .:/workspace
-        command: sleep infinity
     redis:
         image: redis
         restart: unless-stopped

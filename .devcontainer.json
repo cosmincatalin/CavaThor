@@ -1,7 +1,7 @@
 {
     "name": "CavaThor",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
+    "service": "dev",
     "workspaceFolder": "/workspace",
     "extensions": [
         "ms-vscode.cpptools-extension-pack",
@@ -16,56 +16,5 @@
         "jeppeandersen.vscode-kafka",
         "mutantdino.resourcemonitor",
         "zxh404.vscode-proto3"
-    ],
-    "customizations": {
-        "vscode": {
-            "settings": {
-                "files.exclude": {
-                    "**/.git": true,
-                    "**/.idea": true,
-                    "**/.DS_Store": true,
-                    "**/Thumbs.db": true
-                },
-                "files.associations": {
-                    "optional": "cpp"
-                },
-                "[cpp]": {
-                    "editor.defaultFormatter": "ms-vscode.cpptools"
-                },
-                "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/devcontainer/compile_commands.json",
-                "cmake.useCMakePresets": "auto",
-                "cmake.configureOnOpen": true,
-                "protoc": {
-                    "compile_on_save": true,
-                    "options": [
-                        "--proto_path=${workspaceRoot}/runners",
-                        "--cpp_out=${workspaceRoot}/runners"
-                    ]
-                },
-                "cSpell.words": [
-                    "buildsystems",
-                    "Codespace",
-                    "devcontainer",
-                    "instdir",
-                    "lukka",
-                    "vcpkg",
-                    "VCPKG",
-                    "Cava",
-                    "cpptools",
-                    "sonarlint",
-                    "sonarsource",
-                    "hykin",
-                    "surajbarkale",
-                    "cschleiden",
-                    "jeppeandersen",
-                    "cavathor",
-                    "hiredis",
-                    "protoc",
-                    "mutantdino",
-                    "resourcemonitor",
-                    "proto3"
-                ]
-            }
-        }
-    }
+    ]
 }
