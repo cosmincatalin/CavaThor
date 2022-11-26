@@ -2,6 +2,7 @@
 #include <dbg.h>
 #include <signal.h>
 #include <librdkafka/rdkafka.h>
+#include "user.pb.h"
 
 static volatile sig_atomic_t run = 1;
 
@@ -12,18 +13,15 @@ static void stop(int sig) {
 
 int main()
 {
-    char errstr[512];
-    rd_kafka_resp_err_t err;
     rd_kafka_conf_t* conf = rd_kafka_conf_new();
-    rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", errstr, sizeof(errstr));
-    rd_kafka_conf_set(conf, "group.id", "dummy-group-id", errstr, sizeof(errstr));
+    rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", nullptr, 0);
+    rd_kafka_conf_set(conf, "group.id", "dummy-group-id", nullptr, 0);
     rd_kafka_conf_set(conf, "auto.offset.reset", "earliest", nullptr, 0);
-    rd_kafka_t* consumer = rd_kafka_new(RD_KAFKA_CONSUMER, conf, errstr, sizeof(errstr));
+    rd_kafka_t* consumer = rd_kafka_new(RD_KAFKA_CONSUMER, conf, nullptr, 0);
     conf = nullptr;
-    const char *topic = "users";
     rd_kafka_topic_partition_list_t *subscription = rd_kafka_topic_partition_list_new(1);
-    rd_kafka_topic_partition_list_add(subscription, topic, RD_KAFKA_PARTITION_UA);
-    err = rd_kafka_subscribe(consumer, subscription);
+    rd_kafka_topic_partition_list_add(subscription, "users-pb", RD_KAFKA_PARTITION_UA);
+    rd_kafka_subscribe(consumer, subscription);
     rd_kafka_topic_partition_list_destroy(subscription);
     signal(SIGINT, stop);
     while (run) {
@@ -45,8 +43,9 @@ int main()
                 return 1;
             }
         } else {
-            dbg((char *)consumer_message->payload);
-            dbg(consumer_message->len);
+            runners::User userOut;
+            userOut.ParseFromArray(consumer_message->payload, consumer_message->len);
+            dbg(userOut.DebugString());
         }
 
         // Free the message when we're done.

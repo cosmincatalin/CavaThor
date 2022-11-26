@@ -1,5 +1,5 @@
 PRODUCER keyed-message
-topic: users
+topic: users-plain
 key: mykeyq
 headers: header1=value1, header2=value2
 Cosmin,Dev

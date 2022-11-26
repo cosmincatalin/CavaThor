@@ -1,5 +1,11 @@
 version: "3.8"
 services:
+    dev:
+        build:
+            dockerfile: docker/dev.Dockerfile
+        volumes:
+            -   .:/workspace
+        command: sleep infinity
     app:
         image: mcr.microsoft.com/devcontainers/cpp:ubuntu
         volumes:
