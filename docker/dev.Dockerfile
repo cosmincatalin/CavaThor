@@ -7,7 +7,8 @@ RUN sudo apt install -y \
     g++-10 \
     protobuf-compiler \
     clang-format \
-    uncrustify
+    uncrustify \
+    clang-tidy
 RUN pip install \
     cmake \
     pre-commit \
