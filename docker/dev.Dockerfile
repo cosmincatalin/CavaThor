@@ -7,7 +7,8 @@ RUN sudo apt install -y \
     g++-10 \
     clang-format \
     uncrustify \
-    clang-tidy
+    clang-tidy \
+    nodejs
 RUN pip install \
     cmake==3.25.0 \
     pre-commit==2.20.0 \

@@ -2,7 +2,7 @@
 #include <dbg.h>
 #include <signal.h>
 #include <librdkafka/rdkafka.h>
-#include "user.pb.h"
+#include "car.pb.h"
 
 static volatile sig_atomic_t run = 1;
 
@@ -42,9 +42,9 @@ int main() {
                 return 1;
             }
         } else {
-            runners::User userOut;
-            userOut.ParseFromArray(consumer_message->payload, consumer_message->len);
-            dbg(userOut.DebugString());
+            example::Car car_out;
+            car_out.ParseFromArray(consumer_message->payload, consumer_message->len);
+            dbg(car_out.DebugString());
         }
 
         // Free the message when we're done.

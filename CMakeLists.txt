@@ -36,8 +36,8 @@ target_link_libraries(RedisProducer PRIVATE hiredis::hiredis)
 add_executable(
     KafkaConsumer
     runners/kafka-consumer.cpp
-    runners/user.pb.h
-    runners/user.pb.cc
+    runners/car.pb.h
+    runners/car.pb.cc
 )
 target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
@@ -49,25 +49,13 @@ target_link_libraries(
 add_executable(
     KafkaProducer
     runners/kafka-producer.cpp
-    runners/user.pb.h
-    runners/user.pb.cc
+    runners/car.pb.h
+    runners/car.pb.cc
 )
 target_include_directories(KafkaProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(KafkaProducer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 target_link_libraries(
     KafkaProducer
-    PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite
-)
-
-add_executable(
-    ProtobufProducer
-    runners/protobuf-producer.cpp
-    runners/user.pb.h
-    runners/user.pb.cc
-)
-target_include_directories(ProtobufProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(
-    ProtobufProducer
     PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite
 )
 

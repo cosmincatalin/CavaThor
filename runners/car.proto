@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package runners;
+package example;
 
 message Car {
-    double id = 1;
+    double serial_number = 1;
     float top_speed = 2;
     int32 number_of_doors = 3;
     int64 included_km = 4;
@@ -13,10 +13,16 @@ message Car {
     string brand = 8;
     bytes logo = 9;
     Color color = 10;
+    Engine engine = 11;
 }
 
 enum Color {
     COLOR_UNSPECIFIED = 0;
     COLOR_RED = 1;
     COLOR_BLUE = 2;
+}
+
+message Engine {
+    bool electric = 1;
+    float power = 2;
 }
