@@ -38,6 +38,8 @@ add_executable(
     runners/kafka-consumer.cpp
     runners/car.pb.h
     runners/car.pb.cc
+    runners/IDestination.cpp
+    runners/IDestination.hpp
 )
 target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
