@@ -3,15 +3,21 @@
 #include <signal.h>
 #include <librdkafka/rdkafka.h>
 #include "car.pb.h"
+#include "IRaw2Destination.hpp"
+#include "Raw2Redis.hpp"
 
 static volatile sig_atomic_t run = 1;
 
 static void stop(int sig) {
-    dbg("Flag change");
+    dbg("Flag change" + sig);
     run = 0;
 }
 
 int main() {
+
+    auto sd = CavaThor::Raw2Redis();
+
+
     rd_kafka_conf_t* conf = rd_kafka_conf_new();
     rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", nullptr, 0);
     rd_kafka_conf_set(conf, "group.id", "dummy-group-id", nullptr, 0);

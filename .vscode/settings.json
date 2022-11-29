@@ -57,5 +57,6 @@
         "uncrustify",
         "vcpkg",
         "VCPKG"
-    ]
+    ],
+    "cpp-class-helper.includeFolderPath": "/workspace/runners"
 }
