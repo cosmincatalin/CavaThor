@@ -14,9 +14,7 @@ static void stop(int sig) {
 }
 
 int main() {
-
     auto sd = CavaThor::Raw2Redis();
-
 
     rd_kafka_conf_t* conf = rd_kafka_conf_new();
     rd_kafka_conf_set(conf, "bootstrap.servers", "kafka:9092", nullptr, 0);
