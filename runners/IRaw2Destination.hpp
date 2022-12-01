@@ -6,7 +6,7 @@ namespace CavaThor {
 class IRaw2Destination {
  public:
     virtual void persist() = 0;
-    ~IRaw2Destination() = default;
+    virtual ~IRaw2Destination() = default;
 };
 
 }  // CavaThor

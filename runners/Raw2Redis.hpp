@@ -6,11 +6,11 @@
 
 namespace CavaThor {
 
-class Raw2Redis {
+class Raw2Redis : public CavaThor::IRaw2Destination {
  public:
     Raw2Redis();
-    void persist();
-    ~Raw2Redis() = default;
+    void persist() override;
+    ~Raw2Redis() override = default;
 };
 
 }  // CavaThor
