@@ -41,8 +41,11 @@ add_executable(
     runners/IRaw2Destination.hpp
     runners/Raw2Redis.hpp
     runners/Raw2Redis.cpp
+    runners/Replicator.cpp
+    runners/Replicator.hpp
 )
 target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(KafkaConsumer PRIVATE hiredis::hiredis)
 target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 target_link_libraries(
     KafkaConsumer
