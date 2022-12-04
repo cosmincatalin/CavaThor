@@ -59,5 +59,6 @@
         "vcpkg",
         "VCPKG"
     ],
-    "cpp-class-helper.includeFolderPath": "/workspace/runners"
+    "cpp-class-helper.includeFolderPath": "/workspace/runners",
+    "workbench.tree.indent": 24
 }
