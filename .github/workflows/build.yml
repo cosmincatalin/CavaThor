@@ -19,7 +19,7 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
 
-            -   uses: lukka/get-cmake@v3.24.3
+            -   uses: lukka/get-cmake@v3.25.1
                 name: Install CMake and Ninja
 
             -   name: Restore artifacts, or setup vcpkg (do not install any package)
