@@ -6,6 +6,10 @@ services:
         volumes:
             -   .:/workspace
         command: sleep infinity
+        environment:
+            BOOTSTRAP_SERVER: "localhost:9092"
+            REDIS_HOST: "redis"
+            REDIS_PORT: "6379"
     redis:
         image: redis
         restart: unless-stopped
