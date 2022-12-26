@@ -28,7 +28,7 @@ jobs:
                     vcpkgGitCommitId: ${{ env.VCPKG_VERSION }}
 
             -   name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
-                uses: lukka/run-cmake@v10.1
+                uses: lukka/run-cmake@v10.2
                 with:
                     configurePreset: "${{ matrix.config.preset }}"
                     buildPreset: "${{ matrix.config.preset }}"
