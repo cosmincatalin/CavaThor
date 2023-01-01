@@ -22,17 +22,25 @@ find_package(hiredis CONFIG REQUIRED)
 find_package(RdKafka CONFIG REQUIRED)
 find_package(Threads REQUIRED)
 
-add_executable(
+add_executable(KafkaSimpleProducer src/kafka-simple-producer/producer.cpp)
+target_include_directories(
     KafkaSimpleProducer
-    src/kafka-simple-producer/producer.cpp)
-target_include_directories(KafkaSimpleProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(KafkaSimpleProducer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
+    PRIVATE ${DBG_MACRO_INCLUDE_DIRS}
+)
+target_link_libraries(
+    KafkaSimpleProducer
+    PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
+)
 
-add_executable(
+add_executable(KafkaSimpleConsumer src/kafka-simple-consumer/consumer.cpp)
+target_include_directories(
     KafkaSimpleConsumer
-    src/kafka-simple-consumer/consumer.cpp)
-target_include_directories(KafkaSimpleConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(KafkaSimpleConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
+    PRIVATE ${DBG_MACRO_INCLUDE_DIRS}
+)
+target_link_libraries(
+    KafkaSimpleConsumer
+    PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
+)
 
 #add_executable(
 #    KafkaConsumer
