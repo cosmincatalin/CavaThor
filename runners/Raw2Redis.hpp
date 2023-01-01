@@ -1,16 +1,16 @@
 #ifndef RUNNERS_RAW2REDIS_HPP_
 #define RUNNERS_RAW2REDIS_HPP_
 
+#include ".thrash/IRaw2Destination.hpp"
 #include <iostream>
-#include "IRaw2Destination.hpp"
 
 namespace CavaThor {
 
-class Raw2Redis : public CavaThor::IRaw2Destination {
+class Raw2Redis {
  public:
     Raw2Redis();
-    void persist() override;
-    ~Raw2Redis() override = default;
+    void persist();
+    ~Raw2Redis() = default;
 };
 
 }  // CavaThor

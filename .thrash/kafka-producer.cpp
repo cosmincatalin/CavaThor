@@ -1,8 +1,8 @@
 #define DBG_MACRO_NO_WARNING
+#include "../runners/proto/car.pb.h"
 #include <dbg.h>
-#include <signal.h>
 #include <librdkafka/rdkafka.h>
-#include "car.pb.h"
+#include <signal.h>
 
 int main() {
     example::Car car_in;

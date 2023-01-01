@@ -20,49 +20,28 @@ include_directories(src)
 find_path(DBG_MACRO_INCLUDE_DIRS "dbg.h")
 find_package(hiredis CONFIG REQUIRED)
 find_package(RdKafka CONFIG REQUIRED)
-find_package(protobuf CONFIG REQUIRED)
-#find_package(Threads REQUIRED)
-
-#add_library(CavaThor SHARED src/Replicator.cpp src/Replicator.hpp src/Destinations/RedisDestination.cpp src/Destinations/RedisDestination.hpp)
-#target_include_directories(CavaThor PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-#target_link_libraries(CavaThor PUBLIC Threads::Threads)
-#target_link_libraries(CavaThor PRIVATE hiredis::hiredis)
-#install(TARGETS CavaThor)
-
-add_executable(RedisProducer runners/redis-producer.cpp)
-target_include_directories(RedisProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(RedisProducer PRIVATE hiredis::hiredis)
+find_package(Threads REQUIRED)
 
 add_executable(
-    KafkaConsumer
-    runners/kafka-consumer.cpp
-    runners/car.pb.h
-    runners/car.pb.cc
-    runners/IRaw2Destination.hpp
-    runners/Raw2Redis.hpp
-    runners/Raw2Redis.cpp
-    runners/Replicator.cpp
-    runners/Replicator.hpp
-)
-target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(KafkaConsumer PRIVATE hiredis::hiredis)
-target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
-target_link_libraries(
-    KafkaConsumer
-    PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite
-)
+    KafkaSimpleProducer
+    src/kafka-simple-producer/producer.cpp)
+target_include_directories(KafkaSimpleProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(KafkaSimpleProducer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 
 add_executable(
-    KafkaProducer
-    runners/kafka-producer.cpp
-    runners/car.pb.h
-    runners/car.pb.cc
-)
-target_include_directories(KafkaProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-target_link_libraries(KafkaProducer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
-target_link_libraries(
-    KafkaProducer
-    PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite
-)
+    KafkaSimpleConsumer
+    src/kafka-simple-consumer/consumer.cpp)
+target_include_directories(KafkaSimpleConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+target_link_libraries(KafkaSimpleConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
 
-#target_link_libraries(Synchronize CavaThor)
+#add_executable(
+#    KafkaConsumer
+#    runners/kafka-consumer.cpp
+#    runners/Raw2Redis.hpp
+#    runners/Raw2Redis.cpp
+#    runners/Replicator.cpp
+#    runners/Replicator.hpp
+#)
+#target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
+#target_link_libraries(KafkaConsumer PRIVATE hiredis::hiredis)
+#target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
