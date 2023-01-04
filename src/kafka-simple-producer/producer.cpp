@@ -8,7 +8,7 @@ static void sigterm(int sig) {
     dbg(sig);
     run = 0;
 }
-
+ 
 int main() {
     std::string err;
 
@@ -22,12 +22,18 @@ int main() {
     signal(SIGINT, sigterm);
     signal(SIGTERM, sigterm);
 
-    std::string message{"string message without a key"};
-    producer->produce(topic, RdKafka::Topic::PARTITION_UA, RdKafka::Producer::RK_MSG_COPY, const_cast<char *>(message.c_str()), message.length(), nullptr, nullptr);
+    char* message_without_key{"string message without a key"};
+    producer->produce(topic, RdKafka::Topic::PARTITION_UA, RdKafka::Producer::RK_MSG_COPY,
+                      message_without_key,
+                      strlen(message_without_key),
+                      nullptr, nullptr);
 
-    message = "string message with key";
+    char* message_with_key = "string message with key";
     const std::string key_for_string_message = "key for a string message";
-    producer->produce(topic, RdKafka::Topic::PARTITION_UA, RdKafka::Producer::RK_MSG_COPY, const_cast<char *>(message.c_str()), message.length(), &key_for_string_message, nullptr);
+    producer->produce(topic, RdKafka::Topic::PARTITION_UA, RdKafka::Producer::RK_MSG_COPY,
+                      message_with_key,
+                      strlen(message_with_key),
+                      &key_for_string_message, nullptr);
 
     producer->poll(0);
     producer->flush(10 * 1000 /* wait for max 10 seconds */);
