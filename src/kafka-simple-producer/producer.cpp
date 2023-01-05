@@ -8,7 +8,7 @@ static void sigterm(int sig) {
     dbg(sig);
     run = 0;
 }
- 
+
 int main() {
     std::string err;
 
@@ -36,7 +36,7 @@ int main() {
                       &key_for_string_message, nullptr);
 
     producer->poll(0);
-    producer->flush(10 * 1000 /* wait for max 10 seconds */);
+    producer->flush(10 * 1000);
     delete producer;
 
     dbg("Done");

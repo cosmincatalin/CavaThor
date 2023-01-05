@@ -41,15 +41,3 @@ target_link_libraries(
     KafkaSimpleConsumer
     PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
 )
-
-#add_executable(
-#    KafkaConsumer
-#    runners/kafka-consumer.cpp
-#    runners/Raw2Redis.hpp
-#    runners/Raw2Redis.cpp
-#    runners/Replicator.cpp
-#    runners/Replicator.hpp
-#)
-#target_include_directories(KafkaConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
-#target_link_libraries(KafkaConsumer PRIVATE hiredis::hiredis)
-#target_link_libraries(KafkaConsumer PRIVATE RdKafka::rdkafka RdKafka::rdkafka++)
