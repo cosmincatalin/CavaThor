@@ -2,7 +2,17 @@
 #include <dbg.h>
 #include <librdkafka/rdkafkacpp.h>
 
+static volatile sig_atomic_t run = 1;
+
+static void sigterm(int sig) {
+  run = 0;
+}
+
 int main() {
+
+    signal(SIGINT, sigterm);
+    signal(SIGTERM, sigterm);
+
     std::string err;
 
     auto *conf = RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL);
@@ -16,11 +26,20 @@ int main() {
 
     consumer->subscribe(topics);
 
-    while (true) {
+    while (run) {
         RdKafka::Message *msg = consumer->consume(1000);
-        dbg(msg->payload());
+        if(auto message = msg->payload(); message != nullptr) {
+            dbg(std::string(static_cast<const char*>(msg->payload())));
+            dbg(msg->len());
+            if(msg->key_len() > 0) {
+                dbg(*msg->key());
+            }
+        }
         delete msg;
     }
+
+    consumer->close();
+    delete consumer;
 
     dbg("Done");
 
