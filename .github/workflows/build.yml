@@ -42,7 +42,7 @@ jobs:
                 run: cmake -E tar cfv ../${{ matrix.config.artifact }} --format=7zip .
 
             -   name: Upload
-                uses: actions/upload-artifact@v3.1.1
+                uses: actions/upload-artifact@v3.1.2
                 with:
                     path: ./${{ matrix.config.artifact }}
                     name: ${{ matrix.config.artifact }}
