@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package example;
+package proto;
 
 message Car {
     double serial_number = 1;
