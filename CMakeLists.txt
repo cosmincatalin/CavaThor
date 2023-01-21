@@ -43,11 +43,13 @@ target_link_libraries(
     PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
 )
 
-add_executable(KafkaProtoProducer src/kafka-proto-producer/producer.cpp src/proto/car.pb.h src/proto/car.pb.cc)
-target_include_directories(
+add_executable(
     KafkaProtoProducer
-    PRIVATE ${DBG_MACRO_INCLUDE_DIRS}
+    src/kafka-proto-producer/producer.cpp
+    src/proto/car.pb.h
+    src/proto/car.pb.cc
 )
+target_include_directories(KafkaProtoProducer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(
     KafkaProtoProducer
     PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
@@ -57,11 +59,13 @@ target_link_libraries(
     PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite
 )
 
-add_executable(KafkaProtoConsumer src/kafka-proto-consumer/consumer.cpp src/proto/car.pb.h src/proto/car.pb.cc)
-target_include_directories(
+add_executable(
     KafkaProtoConsumer
-    PRIVATE ${DBG_MACRO_INCLUDE_DIRS}
+    src/kafka-proto-consumer/consumer.cpp
+    src/proto/car.pb.h
+    src/proto/car.pb.cc
 )
+target_include_directories(KafkaProtoConsumer PRIVATE ${DBG_MACRO_INCLUDE_DIRS})
 target_link_libraries(
     KafkaProtoConsumer
     PRIVATE RdKafka::rdkafka RdKafka::rdkafka++
